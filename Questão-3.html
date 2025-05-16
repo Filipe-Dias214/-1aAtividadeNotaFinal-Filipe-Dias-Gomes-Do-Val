@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Questão-3</title>
+    
+</head>
+<body>
+
+    <h1>Fomulario de contato</h1>
+    <form id='contactForm'>
+        <label for='name'>Nome:</label>
+        <input type="text" id='name' name='name'>
+
+        <label for="email">E-mail:</label>
+        <input type='text' id='email' name='email'>
+
+        <label for='message'>Mensagem:</label>
+        <textarea id="message" name="message"></textarea>
+
+        <button type='button' onclick="validateForm()">Enviar</button>
+        <p id="feedback"></p>
+    </form>
+   
+</body>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1{
+          text-align: center;
+        }
+        form {
+            width: 300px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+        button {
+            margin-top: 15px;
+            background-color: #008000;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+ <script>
+        function validateForm() {
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let message = document.getElementById('message').value;
+            let feedback = document.getElementById('feedback');
+
+            if (name === '' || email === '' || message === '') {
+                feedback.innerHTML = "Todos os campos são obrigatórios!";
+                feedback.className = 'error';
+                return;
+            }
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                feedback.innerHTML = "E-mail inválido, tente outro!";
+                feedback.className = "error";
+                return;
+            }
+
+            feedback.innerHTML = 'Parabéns mensagem enviada com sucesso!';
+            feedback.className = 'success';
+        }
+    </script>
+</html>
